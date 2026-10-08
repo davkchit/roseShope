@@ -1,0 +1,32 @@
+<!-- Шапка как у Markthal: белая полоса, логотип на плашке свисает вниз, меню капсом, одна оранжевая кнопка -->
+<header class="mh-header">
+  <div class="mh-bar">
+    <a class="mh-logo" href="index.html" aria-label="Рынок «Южный» — на главную"><img src="assets/img/logo.png" alt="Южный" width="1200" height="335"></a>
+    <nav class="mh-nav" aria-label="Основное меню">
+      <a href="index.html" data-page="index">Главная</a>
+      <a href="kategorii.html" data-page="kategorii">Категории</a>
+      <a href="magazin.html" data-page="magazin">Магазин одежды</a>
+      <a href="index.html#shema">Схема рынка</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+    <a class="mh-btn mh-btn-orange mh-header-cta" data-wa href="#"><svg class="i i-fill"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+    <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><svg class="i"><use href="#i-menu"/></svg></button>
+  </div>
+</header>
+
+<div class="menu" id="menu" aria-hidden="true">
+  <div class="menu-panel">
+    <div class="menu-top">
+      <a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Южный" width="1200" height="335"></a>
+      <button class="burger" style="display:grid" type="button" data-close aria-label="Закрыть меню"><svg class="i"><use href="#i-close"/></svg></button>
+    </div>
+    <nav aria-label="Меню">
+      <a href="index.html" data-page="index">Главная</a>
+      <a href="kategorii.html" data-page="kategorii">Категории</a>
+      <a href="magazin.html" data-page="magazin">Магазин одежды</a>
+      <a href="index.html#shema">Схема рынка</a>
+      <a href="#kontakty">Контакты</a>
+    </nav>
+    <a class="mh-btn mh-btn-orange" data-wa href="#"><svg class="i i-fill"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+  </div>
+</div>

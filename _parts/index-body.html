@@ -1,0 +1,134 @@
+<main>
+  <!-- Хиро 800px, как у Markthal -->
+  <section class="mh-hero">
+    <h1 class="sr-only">Рынок «Южный» — Набережные Челны</h1>
+    <img src="assets/img/hero.jpg" alt="Агропромпарк «Южный»: здания рынка, парковка и поле подсолнухов" width="1254" height="1254" fetchpriority="high">
+    <div class="mh-hero-content">
+      <img class="mh-hero-logo" src="assets/img/logo.png" alt="Рынок «Южный»" width="1200" height="335">
+      <p class="mh-hero-caption">Агропромпарк · Набережные Челны</p>
+    </div>
+  </section>
+
+  <!-- Белый лист с закруглёнными краями наезжает на фото -->
+  <div class="mh-sheet">
+    <section class="mh-intro">
+      <h2 class="mh-title">Здесь есть всё, о чём можно подумать.</h2>
+      <p class="mh-lead">Продукты, одежда, обувь, хозтовары и многое другое на одной территории. Загляните в любой из корпусов — найдётся всё, что нужно для дома, семьи и праздника. <!-- TODO: заменить текст-заглушку --></p>
+    </section>
+
+    <!-- Категории: 5 в ряд, на телефоне — карусель со счётчиком -->
+    <section class="mh-cats-wrap">
+      <div class="mh-cats-row">
+        <button class="mh-round mh-side mh-side-l" type="button" data-mh-prev aria-label="Назад"><svg class="i"><use href="#i-chev-l"/></svg></button>
+        <div class="mh-cats" data-mh-carousel>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/produkty.jpg" alt="" loading="lazy"></span><b>Продукты</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="magazin.html"><span class="mh-cat-img"><img src="assets/img/cat/odezhda.jpg" alt="" loading="lazy"></span><b>Женская и мужская одежда</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/podrostkovaya.jpg" alt="" loading="lazy"></span><b>Подростковая одежда</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/detskaya.jpg" alt="" loading="lazy"></span><b>Детская одежда</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/obuv.jpg" alt="" loading="lazy"></span><b>Обувь</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/tyuli.jpg" alt="" loading="lazy"></span><b>Тюли и шторы</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/hoztovary.jpg" alt="" loading="lazy"></span><b>Хозтовары и бытовая химия</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/elektro.jpg" alt="" loading="lazy"></span><b>Электроника</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/instrumenty.jpg" alt="" loading="lazy"></span><b>Инструменты</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/voentorg.jpg" alt="" loading="lazy"></span><b>Военторг</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/turetskoe.jpg" alt="" loading="lazy"></span><b>Турецкая бытовая химия</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/igrushki.jpg" alt="" loading="lazy"></span><b>Игрушки</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+          <a class="mh-cat" href="kategorii.html"><span class="mh-cat-img"><img src="assets/img/cat/kombikorm.jpg" alt="" loading="lazy"></span><b>Комбикорм</b><small>Смотреть<svg class="i"><use href="#i-arrow"/></svg></small></a>
+        </div>
+        <button class="mh-round mh-side mh-side-r mh-round-on" type="button" data-mh-next aria-label="Вперёд"><svg class="i"><use href="#i-chev-r"/></svg></button>
+      </div>
+      <div class="mh-pager">
+        <button class="mh-round" type="button" data-mh-prev aria-label="Назад"><svg class="i"><use href="#i-chev-l"/></svg></button>
+        <span class="mh-count"><b data-mh-now>01</b><i></i><span data-mh-total>13</span></span>
+        <button class="mh-round mh-round-on" type="button" data-mh-next aria-label="Вперёд"><svg class="i"><use href="#i-chev-r"/></svg></button>
+      </div>
+      <div class="mh-center"><a class="mh-btn mh-btn-orange" href="kategorii.html">Посмотреть все категории<svg class="i"><use href="#i-arrow"/></svg></a></div>
+    </section>
+
+    <!-- Магазин одежды в оранжевой арке (как блок Food News) -->
+    <section class="mh-arch-wrap">
+      <div class="mh-arch">
+        <h2 class="mh-title mh-white">Магазин одежды</h2>
+        <p class="mh-lead mh-white">Женская и мужская одежда: джинсы, худи, костюмы, пижамы и халаты. Всё можно примерить на месте — корпус 1, места 31–32.</p>
+        <div class="mh-cards">
+          <article class="mh-card">
+            <img src="assets/img/store/cat-hudi.jpg" alt="Спортивный костюм" loading="lazy">
+            <h3>Спортивный костюм</h3>
+            <p>Худи на молнии и брюки. Свободный крой — на каждый день.</p>
+            <a data-wa="Здравствуйте! Хочу примерить: Спортивный костюм. Отложите, пожалуйста." href="#">Хочу примерить<svg class="i"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="mh-card">
+            <img src="assets/img/store/jeans-wide-legs.jpg" alt="Джинсы wide leg" loading="lazy">
+            <h3>Джинсы wide leg</h3>
+            <p>Тёмно-серые, высокая посадка. Поможем подобрать размер на месте.</p>
+            <a data-wa="Здравствуйте! Хочу примерить: Джинсы wide leg. Отложите, пожалуйста." href="#">Хочу примерить<svg class="i"><use href="#i-arrow"/></svg></a>
+          </article>
+          <article class="mh-card">
+            <img src="assets/img/store/robe-navy.jpg" alt="Халат плюшевый" loading="lazy">
+            <h3>Халат плюшевый</h3>
+            <p>Тёмно-синий с бордовой отделкой — для холодного сезона.</p>
+            <a data-wa="Здравствуйте! Хочу примерить: Халат плюшевый. Отложите, пожалуйста." href="#">Хочу примерить<svg class="i"><use href="#i-arrow"/></svg></a>
+          </article>
+        </div>
+        <div class="mh-center"><a class="mh-btn mh-btn-white" href="magazin.html">Перейти в магазин<svg class="i"><use href="#i-arrow"/></svg></a></div>
+      </div>
+    </section>
+
+    <!-- Схема рынка -->
+    <section class="mh-scheme" id="shema">
+      <h2 class="mh-title">Схема рынка</h2>
+      <p class="mh-lead">Три корпуса и администрация на одной территории. Нажмите на здание, чтобы увидеть, что в нём.</p>
+      <div class="scheme-map">
+        <img src="assets/img/scheme.jpg" alt="Схема рынка «Южный»: три корпуса, администрация, вход и парковка" width="1020" height="700" loading="lazy">
+        <button class="pin" type="button" data-b="c3" style="left:25.4%;top:17.3%"><span class="num">3</span><span class="t">Продукты</span></button>
+        <button class="pin" type="button" data-b="c2" style="left:49.8%;top:17.6%"><span class="num">2</span><span class="t">Светофор</span></button>
+        <button class="pin" type="button" data-b="c1" style="left:74%;top:17.7%"><span class="num">1</span><span class="t">Вещевой</span></button>
+        <button class="pin pin-adm" type="button" data-b="adm" style="left:77%;top:64%"><span class="t">Администрация</span></button>
+        <span class="spot" style="left:74%;top:40%">Магазин одежды</span>
+      </div>
+      <div class="scheme-list" role="group" aria-label="Здания">
+        <button type="button" data-b="c1"><span class="num">1</span>Вещевой</button>
+        <button type="button" data-b="c2"><span class="num">2</span>Светофор</button>
+        <button type="button" data-b="c3"><span class="num">3</span>Продукты</button>
+        <button type="button" data-b="adm">Администрация</button>
+      </div>
+    </section>
+
+    <!-- Как добраться: карта Яндекса + карточка контактов -->
+    <section class="rt" id="kak-dobratsya">
+      <div class="rt-head">
+        <div>
+          <h2 class="mh-title">Как добраться?</h2>
+        </div>
+      </div>
+      <div class="rt-grid">
+        <div class="rt-map">
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=52.408211%2C55.721179&amp;z=15&amp;pt=52.408211%2C55.721179%2Cpm2rdl" title="Агропромпарк «Южный» на Яндекс Картах" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <div class="rt-card">
+          <svg class="rt-card-sun" aria-hidden="true"><use href="#d-cz-sun"/></svg>
+          <h3>Контакты</h3>
+          <ul class="rt-list">
+            <li><span class="ic"><svg class="i"><use href="#i-pin"/></svg></span><div><b>Адрес</b><span>Республика Татарстан, Набережные Челны, ул.&nbsp;Ахметшина, 115</span></div></li>
+            <li><span class="ic"><svg class="i"><use href="#i-clock"/></svg></span><div><b>Часы работы</b><span>Ежедневно 9:00–17:00</span></div></li>
+            <li><span class="ic"><svg class="i"><use href="#i-phone"/></svg></span><div><b>Администрация</b><a href="tel:+78552473035">+7 (8552) 47-30-35</a></div></li>
+          </ul>
+          <a class="mh-btn mh-btn-orange rt-btn" href="https://yandex.ru/maps/?mode=routes&amp;rtt=auto&amp;rtext=~%D0%9D%D0%B0%D0%B1%D0%B5%D1%80%D0%B5%D0%B6%D0%BD%D1%8B%D0%B5%20%D0%A7%D0%B5%D0%BB%D0%BD%D1%8B%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%90%D1%85%D0%BC%D0%B5%D1%82%D1%88%D0%B8%D0%BD%D0%B0%2C%20115" target="_blank" rel="noopener"><img class="brand-ic" src="assets/img/brand/yandex-maps.svg" alt="" width="20" height="20">Маршрут в Яндекс Картах<svg class="i"><use href="#i-arrow"/></svg></a>
+          <a class="rt-btn rt-btn-line" href="https://2gis.ru/nabchelny/firm/4081915443560633" target="_blank" rel="noopener"><img class="brand-ic" src="assets/img/brand/2gis.png" alt="" width="20" height="20">Открыть в 2ГИС</a>
+        </div>
+      </div>
+      <div class="rt-divider" aria-hidden="true"><svg viewBox="0 0 400 24" preserveAspectRatio="none"><path d="M0 14C70 2 130 2 200 12S330 22 400 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg><img src="assets/img/sun.png" alt="" width="56" height="56"><svg class="flip" viewBox="0 0 400 24" preserveAspectRatio="none"><path d="M0 14C70 2 130 2 200 12S330 22 400 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg></div>
+    </section>
+  </div>
+
+  <dialog class="sheet" id="building" aria-labelledby="building-title">
+    <button class="sheet-close" type="button" data-close-sheet aria-label="Закрыть"><svg class="i"><use href="#i-close"/></svg></button>
+    <img data-sc="photo" src="assets/img/buildings/korpus-1.jpg" alt="">
+    <div class="sheet-body">
+      <h3 id="building-title" data-sc="title"></h3>
+      <p data-sc="text"></p>
+      <div class="tags" data-sc="tags"></div>
+      <a class="btn btn-primary" href="magazin.html" data-sc="action">Магазин одежды<svg class="i"><use href="#i-arrow"/></svg></a>
+    </div>
+  </dialog>
+</main>
