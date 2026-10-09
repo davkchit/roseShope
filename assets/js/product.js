@@ -12,7 +12,7 @@
   root.hidden = true;
   root.innerHTML = `
     <div class="pm-scrim" data-pm-close></div>
-    <div class="pm-panel" role="dialog" aria-modal="true" aria-labelledby="pm-title">
+    <div class="pm-panel" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="pm-title">
       <div class="pm-grab" aria-hidden="true"><i></i></div>
       <button class="pm-close" type="button" data-pm-close aria-label="Закрыть"><svg class="i"><use href="#i-close"/></svg></button>
       <div class="pm-scroll">
@@ -89,12 +89,15 @@
   /* ---------- Открыть / закрыть ---------- */
   let lastFocus = null, isOpen = false;
   window.openProduct = (p, fromEl) => {
+    // p.src — готовый путь к фото (категории): тогда окно показывает только фото и название
+    const photoOnly = !!p.src;
+    root.classList.toggle('pm-photo-only', photoOnly);
     root.querySelector('.pm-cat').textContent = CATS[p.cat] || 'Одежда';
     root.querySelector('#pm-title').textContent = p.name;
-    root.querySelector('.pm-desc').textContent = p.desc;
-    img.src = `assets/img/store/${p.img}.jpg`;
+    root.querySelector('.pm-desc').textContent = p.desc || '';
+    img.src = p.src || `assets/img/store/${p.img}.jpg`;
     img.alt = p.name;
-    root.querySelector('.pm-wa').href = waLink(`Здравствуйте! Хочу примерить: ${p.name}. Отложите, пожалуйста.`);
+    if (!photoOnly) root.querySelector('.pm-wa').href = waLink(`Здравствуйте! Хочу примерить: ${p.name}. Отложите, пожалуйста.`);
     scroller.scrollTop = 0;
 
     lastFocus = document.activeElement;
@@ -107,7 +110,8 @@
     if (!isOpen) { s.p = 0; s.v = 0; paint(); }
     isOpen = true;
     springTo(1, { damping: phone.matches ? 0.9 : 1, response: phone.matches ? 0.4 : 0.36 });
-    root.querySelector('.pm-close').focus({ preventScroll: true });
+    // Фокус на само окно (а не на крестик) — без лишней обводки на телефоне, но Tab/Esc работают
+    panel.focus({ preventScroll: true });
   };
 
   const close = (velocity) => {
@@ -127,7 +131,7 @@
     if (e.key === 'Escape') close();
     // Фокус не уходит из окна
     if (e.key === 'Tab') {
-      const f = [...panel.querySelectorAll('button, a[href]')];
+      const f = [...panel.querySelectorAll('button, a[href]')].filter(x => x.offsetParent);
       const first = f[0], last = f[f.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
       else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
@@ -179,3 +183,10 @@
   panel.addEventListener('pointerup', endDrag);
   panel.addEventListener('pointercancel', endDrag);
 })();
+
+/* Категории: нажатие на карточку открывает окно с фото */
+document.querySelectorAll('.mh-grid button.mh-cat').forEach(a => a.addEventListener('click', e => {
+  e.preventDefault();
+  const im = a.querySelector('img');
+  window.openProduct({ src: im.getAttribute('src'), name: a.querySelector('b').textContent }, a.querySelector('.mh-cat-img'));
+}));
