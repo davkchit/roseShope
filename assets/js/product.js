@@ -16,7 +16,7 @@
       <div class="pm-grab" aria-hidden="true"><i></i></div>
       <button class="pm-close" type="button" data-pm-close aria-label="Закрыть"><svg class="i"><use href="#i-close"/></svg></button>
       <div class="pm-scroll">
-        <div class="pm-img"><img alt=""></div>
+        <div class="pm-img"><img class="pm-img-bg" alt="" aria-hidden="true"><img class="pm-img-main" alt=""></div>
         <div class="pm-body">
           <span class="pm-cat"></span>
           <h3 id="pm-title"></h3>
@@ -36,7 +36,12 @@
   const panel = root.querySelector('.pm-panel');
   const scrim = root.querySelector('.pm-scrim');
   const scroller = root.querySelector('.pm-scroll');
-  const img = root.querySelector('.pm-img img');
+  const img = root.querySelector('.pm-img-main');
+  const imgBg = root.querySelector('.pm-img-bg');
+  const imgBox = root.querySelector('.pm-img');
+  // Высота блока фото подстраивается под пропорции снимка — фото видно целиком, без обрезки
+  const fit = () => { if (img.naturalWidth) imgBox.style.setProperty('--pm-r', (img.naturalWidth / img.naturalHeight).toFixed(4)); };
+  img.addEventListener('load', fit);
 
   /* ---------- Пружина: damping ratio + response, как у Apple ---------- */
   // p — прогресс открытия: 0 закрыто, 1 открыто. Значение и скорость живут здесь, анимация всегда продолжает с них.
@@ -95,7 +100,9 @@
     root.querySelector('.pm-cat').textContent = CATS[p.cat] || 'Одежда';
     root.querySelector('#pm-title').textContent = p.name;
     root.querySelector('.pm-desc').textContent = p.desc || '';
-    img.src = p.src || `assets/img/store/${p.img}.jpg`;
+    imgBox.style.removeProperty('--pm-r');
+    img.src = imgBg.src = p.src || `assets/img/store/${p.img}.jpg`;
+    if (img.complete) fit();
     img.alt = p.name;
     if (!photoOnly) root.querySelector('.pm-wa').href = waLink(`Здравствуйте! Хочу примерить: ${p.name}. Отложите, пожалуйста.`);
     scroller.scrollTop = 0;
