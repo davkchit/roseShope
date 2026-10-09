@@ -925,3 +925,71 @@ img.brand-ic[src$="2gis.png"] { border-radius: 5px; }
 @media (max-width: 760px) { .sh { background: linear-gradient(180deg, #FBF0E2 0%, #FBF0E2 72%, var(--mh-bg) 100%); } }
 @media (max-width: 760px) { .sh { min-height: calc(100svh - 52px); } .sh-photo { flex: 1 1 auto; height: auto; min-height: min(92vw, 440px); } .sh-text { padding-bottom: 56px; } }
 @media (max-width: 760px) { .sh-photo img { object-position: 52% 20%; } }
+
+/* ============================================================
+   Каталог: карточка открывается во всплывающем окне (product.js)
+   ============================================================ */
+.card-open { display: flex; flex-direction: column; align-items: stretch; width: 100%; padding: 0; border: 0; background: none;
+  text-align: left; color: inherit; font: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.card-open .card-img { display: block; transition: transform .1s ease-out; }
+.card-open:active .card-img { transform: scale(.97); }               /* отклик сразу на нажатие */
+.card-open:focus-visible { outline: none; }
+.card-open:focus-visible .card-img { outline: 3px solid var(--mh-orange); outline-offset: 3px; }
+.card .card-open h3 { margin-bottom: 12px; }
+
+html.pm-lock, html.pm-lock body { overflow: hidden; }
+.pm { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 24px; }
+.pm[hidden] { display: none; }
+.pm-scrim { position: absolute; inset: 0; background: rgba(40, 14, 6, .42);
+  -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%); opacity: 0; }
+.pm-panel { position: relative; display: flex; width: min(880px, 100%); max-height: min(620px, calc(100vh - 48px));
+  border-radius: 28px; background: #fff; overflow: hidden; will-change: transform, opacity;
+  box-shadow: 0 30px 80px rgba(40, 14, 6, .35), 0 0 0 1px rgba(255, 255, 255, .6) inset; }
+.pm-scroll { display: grid; grid-template-columns: 1fr 1fr; width: 100%; overflow: auto; overscroll-behavior: contain; }
+.pm-img { background: #F3EBE1; min-height: 100%; }
+.pm-img img { display: block; width: 100%; height: 100%; max-height: min(620px, calc(100vh - 48px)); object-fit: cover; }
+.pm-body { display: flex; flex-direction: column; padding: 44px 36px 32px; }
+.pm-cat { align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #FCE6CF; color: var(--mh-orange-d);
+  font-size: 13px; font-weight: 700; letter-spacing: .01em; }
+.pm-body h3 { margin: 14px 0 0; font: 800 clamp(26px, 2.6vw, 34px)/1.1 var(--f-head); letter-spacing: -.02em; color: var(--mh-ink); }
+.pm-desc { margin: 10px 0 0; font-size: 17px; line-height: 1.45; color: var(--mh-text); }
+.pm-facts { list-style: none; margin: 24px 0 28px; padding: 18px 0 0; border-top: 1px solid #F0E3D4; display: grid; gap: 12px; }
+.pm-facts li { display: flex; align-items: center; gap: 12px; font-size: 15px; color: var(--mh-text); }
+.pm-facts .i { width: 20px; height: 20px; color: var(--mh-orange); flex: none; }
+.pm-wa { margin-top: auto; width: 100%; min-height: 56px; justify-content: center; font-size: 17px; }
+.pm-note { margin: 12px 0 0; text-align: center; font-size: 14px; color: var(--mh-gray); }
+.pm-close { position: absolute; z-index: 2; right: 14px; top: 14px; display: grid; place-items: center; width: 40px; height: 40px;
+  border: 0; border-radius: 50%; color: var(--mh-ink); cursor: pointer;
+  background: rgba(255, 255, 255, .72); -webkit-backdrop-filter: blur(16px) saturate(180%); backdrop-filter: blur(16px) saturate(180%);
+  box-shadow: 0 2px 10px rgba(40, 14, 6, .12); transition: transform .1s ease-out, background-color .2s; }
+.pm-close:hover { background: rgba(255, 255, 255, .92); }
+.pm-close:active { transform: scale(.9); }
+.pm-close .i { width: 20px; height: 20px; }
+.pm-grab { display: none; }
+
+@media (max-width: 760px) {
+  .pm { padding: 0; place-items: end stretch; }
+  .pm-panel { width: 100%; max-height: 92svh; border-radius: 26px 26px 0 0; touch-action: none; }
+  .pm-panel.is-dragging { cursor: grabbing; }
+  .pm-scroll { grid-template-columns: 1fr; touch-action: pan-y; }
+  .pm-img img { max-height: none; height: auto; aspect-ratio: 4 / 4.4; }
+  .pm-body { padding: 22px 20px calc(20px + env(safe-area-inset-bottom)); }
+  .pm-grab { display: flex; justify-content: center; position: absolute; z-index: 2; left: 0; right: 0; top: 0; height: 26px; padding-top: 8px; }
+  .pm-grab i { width: 40px; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .85); box-shadow: 0 1px 4px rgba(0, 0, 0, .25); }
+  .pm-close { top: 16px; right: 14px; width: 36px; height: 36px; }
+  .pm-facts { margin: 18px 0 22px; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .pm-scrim { background: rgba(40, 14, 6, .6); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .pm-close { background: #fff; backdrop-filter: none; -webkit-backdrop-filter: none; }
+}
+
+/* Отклик на нажатие по всему сайту — сразу, на касание, а не после отпускания */
+.btn, .mh-btn, .chip, .mh-round, .rt-btn-line, .tour-nav { -webkit-tap-highlight-color: transparent; }
+.btn:active, .mh-btn:active, .rt-btn-line:active { transform: scale(.97); transition: transform .1s ease-out; }
+.mh-round:active:not(:disabled), .tour-nav:active:not(:disabled) { transform: scale(.92); transition: transform .1s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .btn:active, .mh-btn:active, .rt-btn-line:active, .card-open:active .card-img { transform: none; }
+}
+.pm-close:focus:not(:focus-visible) { outline: none; }
+@media (max-width: 760px) { .pm-img { min-height: 0; } .pm-img img { display: block; } }

@@ -42,11 +42,15 @@
   // p — прогресс открытия: 0 закрыто, 1 открыто. Значение и скорость живут здесь, анимация всегда продолжает с них.
   const s = { p: 0, v: 0, target: 0, raf: 0, damping: 1, response: 0.35, onRest: null };
   const step = (t, last) => {
-    const dt = Math.min(0.032, (t - last) / 1000);
+    // Интегрируем мелкими шагами по реальному времени: даже если кадры пропущены, пружина не «застревает»
+    let left = Math.min(0.25, Math.max(0, (t - last) / 1000));
     const k = (2 * Math.PI / s.response) ** 2;
     const c = 4 * Math.PI * s.damping / s.response;
-    s.v += (-k * (s.p - s.target) - c * s.v) * dt;
-    s.p += s.v * dt;
+    while (left > 0) {
+      const dt = Math.min(0.004, left); left -= dt;
+      s.v += (-k * (s.p - s.target) - c * s.v) * dt;
+      s.p += s.v * dt;
+    }
     paint();
     if (Math.abs(s.v) < 0.002 && Math.abs(s.p - s.target) < 0.0005) {
       s.p = s.target; s.v = 0; s.raf = 0; paint();
