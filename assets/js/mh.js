@@ -92,3 +92,55 @@
   root.addEventListener('mouseleave', restart);
   show(0); restart();
 })();
+
+/* Плавные переходы между страницами и появление блоков при прокрутке */
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const html = document.documentElement;
+
+  // Переход по ссылке на другую страницу сайта: страница мягко гаснет, новая проявляется (CSS pageIn)
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href]');
+    if (!a || reduce || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (a.target && a.target !== '_self') return;
+    const url = new URL(a.href, location.href);
+    if (!/\.html$/.test(url.pathname) || url.origin !== location.origin) return;
+    if (url.pathname === location.pathname) return; // якорь на этой же странице — обычная плавная прокрутка
+    e.preventDefault();
+    html.classList.add('is-leaving');
+    setTimeout(() => { location.href = url.href; }, 260);
+  });
+  // Возврат кнопкой «Назад» из кэша — страница не должна остаться погасшей
+  addEventListener('pageshow', () => html.classList.remove('is-leaving'));
+
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  // Какие блоки проявляются: крупные секции целиком, карточки — по очереди с небольшой задержкой
+  const groups = [
+    ['.mh-intro > *, .mh-page-head > *', 90],
+    ['.mh-cats .mh-cat', 70],
+    ['.mh-grid .mh-cat', 70],
+    ['.mh-center', 0],
+    ['.mh-arch-wrap', 0],
+    ['.st-card', 110],
+    ['.mh-scheme > *', 90],
+    ['.rt', 0],
+    ['.cz-perks li', 110],
+    ['.pn', 0],
+  ];
+  const items = [];
+  groups.forEach(([sel, stagger]) => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      if (el.classList.contains('reveal') || el.closest('.reveal')) return; // у этих уже есть своё появление
+      el.classList.add('rv');
+      el.style.setProperty('--rv-d', `${stagger ? (i % 5) * stagger : 0}ms`);
+      items.push(el);
+    });
+  });
+  const io = new IntersectionObserver(entries => entries.forEach(en => {
+    if (en.isIntersecting) { en.target.classList.add('rv-in'); io.unobserve(en.target); }
+  }), { rootMargin: '0px 0px -10% 0px' });
+  items.forEach(el => io.observe(el));
+  // Страховка: через 3 с показать всё, что почему-то не проявилось
+  setTimeout(() => items.forEach(el => el.classList.add('rv-in')), 3000);
+})();

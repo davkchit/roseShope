@@ -993,3 +993,28 @@ html.pm-lock, html.pm-lock body { overflow: hidden; }
 }
 .pm-close:focus:not(:focus-visible) { outline: none; }
 @media (max-width: 760px) { .pm-img { min-height: 0; } .pm-img img { display: block; } }
+
+/* ============================================================
+   Плавность: вход/выход страницы, появление блоков, первый экран
+   ============================================================ */
+@keyframes pageIn { from { opacity: 0; } }
+@keyframes riseIn { from { opacity: 0; transform: translateY(22px); filter: blur(6px); } }
+body > header, body > main, body > .mh-page, body > footer { animation: pageIn .5s cubic-bezier(.22, 1, .36, 1) both; }
+html.is-leaving body > * { opacity: 0; transition: opacity .26s ease; }
+
+/* Первый экран: логотип/заголовок, текст и кнопки поднимаются по очереди */
+.mh-hero-content > *, .sh-text > * { animation: riseIn .9s cubic-bezier(.22, 1, .36, 1) both; }
+.mh-hero-content > :nth-child(2), .sh-text > :nth-child(2) { animation-delay: .12s; }
+.sh-text > :nth-child(3) { animation-delay: .24s; }
+.sh-photo img { animation: pageIn 1.2s ease both; }
+
+/* Блоки при прокрутке: мягкий подъём с лёгкой расфокусировкой, как на Apple */
+.rv { opacity: 0; transform: translateY(28px); filter: blur(6px);
+  transition: opacity .9s cubic-bezier(.22, 1, .36, 1), transform .9s cubic-bezier(.22, 1, .36, 1), filter .9s cubic-bezier(.22, 1, .36, 1);
+  transition-delay: var(--rv-d, 0ms); }
+.rv.rv-in { opacity: 1; transform: none; filter: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  body > header, body > main, body > .mh-page, body > footer, .mh-hero-content > *, .sh-text > *, .sh-photo img { animation: none; }
+  .rv { opacity: 1; transform: none; filter: none; transition: none; }
+}
