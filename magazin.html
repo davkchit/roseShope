@@ -3,15 +3,114 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Магазин одежды — рынок «Южный»</title>
-  <meta name="description" content="Женская и мужская одежда на рынке «Южный»: джинсы, худи, костюмы, пижамы и халаты. Всё можно примерить. Набережные Челны, ул. Ахметшина, 115.">
+  <title>Магазин одежды на рынке «Южный» — джинсы, худи, пижамы | Набережные Челны</title>
+  <meta name="description" content="Женская и мужская одежда на рынке «Южный» в Набережных Челнах: джинсы, худи и костюмы, куртки, пижамы и халаты, головные уборы. Примерка на месте, отложим вещь до вашего прихода.">
+  <link rel="canonical" href="https://example.com/magazin.html">
+  <meta name="robots" content="index, follow, max-image-preview:large">
   <meta name="theme-color" content="#FFF8EE">
-  <link rel="icon" href="assets/img/favicon.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Гео: город и координаты рынка -->
+  <meta name="geo.region" content="RU-TA">
+  <meta name="geo.placename" content="Набережные Челны">
+  <meta name="geo.position" content="55.721179;52.408211">
+  <meta name="ICBM" content="55.721179, 52.408211">
+
+  <!-- Превью ссылки в мессенджерах и соцсетях -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta property="og:site_name" content="Рынок «Южный»">
+  <meta property="og:title" content="Магазин одежды на рынке «Южный» — джинсы, худи, пижамы | Набережные Челны">
+  <meta property="og:description" content="Женская и мужская одежда на рынке «Южный» в Набережных Челнах: джинсы, худи и костюмы, куртки, пижамы и халаты, головные уборы. Примерка на месте, отложим вещь до вашего прихода.">
+  <meta property="og:url" content="https://example.com/magazin.html">
+  <meta property="og:image" content="https://example.com/assets/img/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Агропромпарк «Южный» в Набережных Челнах">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Подтверждение прав в Яндекс Вебмастере и Google Search Console:
+       вставьте свои коды вместо XXXX и раскомментируйте строки -->
+  <!-- <meta name="yandex-verification" content="XXXX"> -->
+  <!-- <meta name="google-site-verification" content="XXXX"> -->
+
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <link rel="preload" href="assets/fonts/nunito-sans-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/mh.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ClothingStore",
+        "@id": "https://example.com/magazin.html#store",
+        "name": "Магазин одежды на рынке «Южный»",
+        "url": "https://example.com/magazin.html",
+        "image": "https://example.com/assets/img/shop-hero.jpg",
+        "description": "Джинсы, худи и костюмы, куртки, пижамы и халаты, головные уборы. Примерка на месте.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Ахметшина, 115, корпус 1, ряд 1, места 31–32",
+          "addressLocality": "Набережные Челны",
+          "addressRegion": "Республика Татарстан",
+          "addressCountry": "RU"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 55.721179,
+          "longitude": 52.408211
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+          }
+        ],
+        "telephone": "+7 8552 47-30-35",
+        "containedInPlace": {
+          "@id": "https://example.com/#market"
+        },
+        "parentOrganization": {
+          "@id": "https://example.com/#market"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Главная",
+            "item": "https://example.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Магазин одежды",
+            "item": "https://example.com/magazin.html"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body data-page="magazin">
 
@@ -22,11 +121,11 @@
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="i-hanger" viewBox="0 0 24 24"><path d="M12 7.5a2 2 0 1 1 2-2c0 1.2-2 1.6-2 3.2v.3M12 9l-8.4 6.3a1.5 1.5 0 0 0 .9 2.7h15a1.5 1.5 0 0 0 .9-2.7L12 9Z"/></symbol>
+  <symbol id="i-max" viewBox="115 120 770 770"><path fill-rule="evenodd" d="M508.211 878.328c-75.007 0-109.864-10.95-170.453-54.75-38.325 49.275-159.686 87.783-164.979 21.9 0-49.456-10.95-91.248-23.36-136.873-14.782-56.21-31.572-118.807-31.572-209.508 0-216.626 177.754-379.597 388.357-379.597 210.785 0 375.947 171.001 375.947 381.604.707 207.346-166.595 376.118-373.94 377.224m3.103-571.585c-102.564-5.292-182.499 65.7-200.201 177.024-14.6 92.162 11.315 204.398 33.397 210.238 10.585 2.555 37.23-18.98 53.837-35.587a189.8 189.8 0 0 0 92.71 33.032c106.273 5.112 197.08-75.794 204.215-181.95 4.154-106.382-77.67-196.486-183.958-202.574Z"/></symbol>
   <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/></symbol>
   <symbol id="i-tape" viewBox="0 0 24 24"><path d="M3 9a6 4 0 0 1 12 0v6H9a6 4 0 0 1-6-4V9Z"/><ellipse cx="9" cy="9" rx="2.5" ry="1.5"/><path d="M15 12h6v3h-6M18 12v1.5"/></symbol>
   <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4M9.5 15l2 2 3.5-3.5"/></symbol>
-  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.08-.3-.15-1.26-.47-2.39-1.48-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.42.25-.69.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.79h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.83 9.83 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.68 1.45h.01c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.4Z"/></symbol>
   <symbol id="i-chev-l" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
   <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7"/></symbol>
@@ -41,39 +140,39 @@
 <!-- Шапка как у Markthal: белая полоса, логотип на плашке свисает вниз, меню капсом, одна оранжевая кнопка -->
 <header class="mh-header">
   <div class="mh-bar">
-    <a class="mh-logo" href="index.html" aria-label="Рынок «Южный» — на главную"><img src="assets/img/logo.png" alt="Южный" width="1200" height="335"></a>
+    <a class="mh-logo" href="./" aria-label="Рынок «Южный» — на главную"><img src="assets/img/logo-400.png" alt="Южный" width="400" height="112"></a>
     <nav class="mh-nav" aria-label="Основное меню">
-      <a href="index.html" data-page="index">Главная</a>
+      <a href="./" data-page="index">Главная</a>
       <a href="kategorii.html" data-page="kategorii">Категории</a>
       <a href="magazin.html" data-page="magazin">Магазин одежды</a>
-      <a href="index.html#shema">Схема рынка</a>
+      <a href="./#shema">Схема рынка</a>
       <a href="#kontakty">Контакты</a>
     </nav>
-    <a class="mh-btn mh-btn-orange mh-header-cta" data-wa href="#"><svg class="i i-fill"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+    <a class="mh-btn mh-btn-orange mh-header-cta" data-max href="#"><svg class="i i-fill i-max" aria-hidden="true"><use href="#i-max"/></svg>Написать в MAX</a>
     <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="menu"><svg class="i"><use href="#i-menu"/></svg></button>
   </div>
 </header>
 
-<div class="menu" id="menu" aria-hidden="true">
+<div class="menu" id="menu" aria-hidden="true" inert>
   <div class="menu-panel">
     <div class="menu-top">
-      <a class="logo" href="index.html"><img src="assets/img/logo.png" alt="Южный" width="1200" height="335"></a>
+      <a class="logo" href="./"><img src="assets/img/logo-400.png" alt="Южный" width="400" height="112"></a>
       <button class="burger" style="display:grid" type="button" data-close aria-label="Закрыть меню"><svg class="i"><use href="#i-close"/></svg></button>
     </div>
     <nav aria-label="Меню">
-      <a href="index.html" data-page="index">Главная</a>
+      <a href="./" data-page="index">Главная</a>
       <a href="kategorii.html" data-page="kategorii">Категории</a>
       <a href="magazin.html" data-page="magazin">Магазин одежды</a>
-      <a href="index.html#shema">Схема рынка</a>
+      <a href="./#shema">Схема рынка</a>
       <a href="#kontakty">Контакты</a>
     </nav>
-    <a class="mh-btn mh-btn-orange" data-wa href="#"><svg class="i i-fill"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+    <a class="mh-btn mh-btn-orange" data-max href="#"><svg class="i i-fill i-max" aria-hidden="true"><use href="#i-max"/></svg>Написать в MAX</a>
   </div>
 </div>
 <main>
   <!-- Hero: фото уходит за правый край -->
   <section class="sh">
-    <div class="sh-photo"><img src="assets/img/shop-hero.jpg" alt="Девушка в бежевом пальто у входа на рынок «Южный»" width="926" height="712" fetchpriority="high"></div>
+    <div class="sh-photo"><img src="assets/img/shop-hero.jpg" srcset="assets/img/shop-hero-600.jpg 600w, assets/img/shop-hero.jpg 926w" sizes="(max-width: 760px) 100vw, 56vw" alt="Девушка в бежевом пальто у входа на рынок «Южный»" width="926" height="712" fetchpriority="high"></div>
     <svg class="sh-sun" aria-hidden="true"><use href="#d-cz-sun"/></svg>
     <svg class="sh-wave" viewBox="0 0 600 80" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70C150 40 300 78 420 56S560 24 600 30" fill="none" stroke="#F26A1F" stroke-width="4"/><path d="M0 78C160 52 300 86 430 66S570 36 600 42" fill="none" stroke="#F7B52B" stroke-width="4"/></svg>
     <div class="wrap">
@@ -148,10 +247,10 @@
   <section class="section">
     <div class="wrap">
       <div class="cta pn pn-cta reveal">
-        <span class="ic"><svg class="i i-fill"><use href="#i-wa"/></svg></span>
+        <span class="ic"><svg class="i i-fill i-max" aria-hidden="true"><use href="#i-max"/></svg></span>
         <div><h2>Есть ваш размер?</h2><p>Напишите — пришлём фото и подскажем по наличию.</p></div>
         <div class="cta-actions">
-          <a class="btn btn-primary" data-wa="Здравствуйте! Есть ли у вас мой размер?" href="#"><svg class="i i-fill"><use href="#i-wa"/></svg>Написать в WhatsApp</a>
+          <a class="btn btn-primary" data-max="Здравствуйте! Есть ли у вас мой размер?" href="#"><svg class="i i-fill i-max" aria-hidden="true"><use href="#i-max"/></svg>Написать в MAX</a>
           <!-- TODO: телефон магазина; сейчас телефон администрации -->
           <a class="btn btn-ghost" href="tel:+78552473035"><svg class="i"><use href="#i-phone"/></svg>Позвонить</a>
         </div>
@@ -208,8 +307,7 @@
           <p>Республика Татарстан, Набережные Челны<br>ул. Ахметшина, 115</p>
           <p><a href="tel:+78552473035">+7 (8552) 47-30-35</a></p>
           <div class="mh-footer-links">
-            <!-- TODO: ссылка на канал или чат рынка в MAX -->
-            <a href="#"><img class="brand-ic brand-max" src="assets/img/brand/max.svg" alt="" width="22" height="22">Написать в MAX</a>
+            <a data-max href="#"><svg class="i i-fill i-max" aria-hidden="true"><use href="#i-max"/></svg>Написать в MAX</a>
           </div>
         </div>
       </div>
@@ -224,7 +322,7 @@
       </div>
     </div>
     <div class="mh-footer-bottom">
-      <nav aria-label="Меню в подвале"><a href="index.html">Главная</a><a href="kategorii.html">Категории</a><a href="magazin.html">Магазин одежды</a><a href="index.html#shema">Схема рынка</a></nav>
+      <nav aria-label="Меню в подвале"><a href="./">Главная</a><a href="kategorii.html">Категории</a><a href="magazin.html">Магазин одежды</a><a href="./#shema">Схема рынка</a></nav>
       <span>© Агропромпарк «Южный» 2026</span>
     </div>
   </div>

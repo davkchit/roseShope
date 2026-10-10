@@ -2,8 +2,9 @@
    Южный — общий скрипт
    ============================================================ */
 
-// TODO: настоящий номер WhatsApp магазина в формате 79XXXXXXXXX
-const WHATSAPP = '70000000000';
+// TODO: ссылка на профиль или чат рынка в MAX.
+// Где взять: MAX → Профиль → QR-код → «Скопировать ссылку». Вид: https://max.ru/u/xxxxxxxx
+const MAX_URL = 'https://max.ru/';
 // Часы работы рынка (Набережные Челны, UTC+3)
 const HOURS = { open: 9, close: 17 };
 
@@ -33,14 +34,59 @@ const PAGE_SIZE = 8;
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-const waLink = text => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
+// Иконка MAX для кнопок, которые собираются в JS
+// Значок MAX — одноцветный вектор из спрайта страницы (#i-max), красится в цвет текста кнопки
+const MAX_IC = '<svg class="i i-fill i-max" aria-hidden="true"><use href="#i-max"/></svg>';
+const MSG_DEFAULT = 'Здравствуйте! Хочу узнать про одежду в магазине на рынке «Южный».';
+const tryOnText = name => `Здравствуйте! Хочу примерить: ${name}. Отложите, пожалуйста.`;
 
 document.documentElement.classList.replace('no-js', 'js');
 
-/* ---------- Ссылки WhatsApp ---------- */
-$$('[data-wa]').forEach(a => {
-  a.href = waLink(a.dataset.wa || 'Здравствуйте! Хочу узнать про одежду в магазине на рынке «Южный».');
-  a.target = '_blank'; a.rel = 'noopener';
+/* ---------- Ссылки MAX ----------
+   MAX не умеет подставлять текст в чат по ссылке (как wa.me), поэтому
+   по нажатию текст сообщения копируется в буфер и появляется подсказка. */
+const fillMax = (root = document) => $$('[data-max]', root).forEach(a => {
+  a.href = MAX_URL; a.target = '_blank'; a.rel = 'noopener';
+});
+/* Закреплённая кнопка «Написать в MAX»: появляется после первого экрана,
+   прячется у подвала (там своя кнопка), под открытым меню и окном товара */
+const fab = document.createElement('a');
+fab.className = 'mx-fab'; fab.dataset.max = '';
+fab.innerHTML = `${MAX_IC}<span class="mx-fab-t">Написать в MAX</span>`;
+fab.setAttribute('aria-label', 'Написать нам в MAX');
+document.body.append(fab);
+fillMax();
+{
+  const foot = $('footer');
+  let nearFoot = false;
+  const update = () => fab.classList.toggle('on', scrollY > innerHeight * 0.6 && !nearFoot);
+  if (foot) new IntersectionObserver(([e]) => { nearFoot = e.isIntersecting; update(); }).observe(foot);
+  addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+const toast = (() => {
+  let el, timer;
+  return text => {
+    if (!el) {
+      el = document.createElement('div');
+      el.className = 'mx-toast'; el.setAttribute('role', 'status');
+      document.body.append(el);
+    }
+    el.textContent = text;
+    el.classList.add('on');
+    clearTimeout(timer);
+    timer = setTimeout(() => el.classList.remove('on'), 3200);
+  };
+})();
+
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-max]');
+  if (!a) return;
+  const text = a.dataset.max || MSG_DEFAULT;
+  navigator.clipboard?.writeText(text)
+    .then(() => toast('Текст сообщения скопирован — вставьте его в чат MAX'))
+    .catch(() => {});
 });
 
 /* ---------- Открыто / закрыто ---------- */
@@ -56,12 +102,22 @@ $$('[data-open-status]').forEach(el => {
     : `Откроемся ${h < HOURS.open ? 'сегодня' : 'завтра'} в ${pad(HOURS.open)}`;
 });
 
+/* ---------- Карта: грузится, когда до неё остаётся ~1,5 экрана ----------
+   Виджет Яндекс Карт весит ~2 МБ — не тратим на него время при открытии страницы */
+$$('iframe[data-src]').forEach(fr => {
+  const load = () => { fr.src = fr.dataset.src; fr.removeAttribute('data-src'); };
+  if (!('IntersectionObserver' in window)) return load();
+  const ob = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { ob.disconnect(); load(); } }, { rootMargin: '150% 0px' });
+  ob.observe(fr);
+});
+
 /* ---------- Мобильное меню ---------- */
 const menu = $('#menu');
 if (menu) {
   const toggle = open => {
     menu.classList.toggle('open', open);
     menu.setAttribute('aria-hidden', String(!open));
+    menu.inert = !open;
     document.body.style.overflow = open ? 'hidden' : '';
     $('.burger').setAttribute('aria-expanded', String(open));
   };
@@ -98,11 +154,11 @@ if (grid) {
     el.className = 'card';
     el.innerHTML = `
       <button class="card-open" type="button" aria-label="Подробнее: ${p.name}">
-        <span class="card-img"><img src="assets/img/store/${p.img}.jpg" alt="${p.name}" loading="lazy" width="600" height="800"></span>
+        <span class="card-img"><img src="assets/img/store/${p.img}.jpg" alt="${p.name} — магазин одежды на рынке «Южный»" loading="lazy" width="600" height="800"></span>
         <h3>${p.name}</h3>
       </button>
-      <a class="btn" href="${waLink(`Здравствуйте! Хочу примерить: ${p.name}. Отложите, пожалуйста.`)}" target="_blank" rel="noopener">
-        <svg class="i i-fill"><use href="#i-wa"/></svg>Хочу примерить
+      <a class="btn" href="${MAX_URL}" target="_blank" rel="noopener" data-max="${tryOnText(p.name)}">
+        ${MAX_IC}Хочу примерить
       </a>`;
     $('.card-open', el).addEventListener('click', () => window.openProduct && openProduct(p, $('.card-img', el)));
     return el;
@@ -172,11 +228,44 @@ if (sheet) {
     part('action').hidden = !b.action;
     sheet.showModal();
   };
-  $$('[data-b]').forEach(el => el.addEventListener('click', () => open(el.dataset.b)));
-  $('[data-close-sheet]', sheet).addEventListener('click', () => sheet.close());
+  // Плавное закрытие: сначала анимация, потом close()
+  const close = () => {
+    if (!sheet.open || sheet.classList.contains('is-closing')) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return sheet.close();
+    sheet.classList.add('is-closing');
+    setTimeout(() => { sheet.classList.remove('is-closing'); sheet.close(); }, 240);
+  };
+  $$('[data-b]').forEach(el => {
+    el.addEventListener('click', () => open(el.dataset.b));
+    // Здание на схеме — role="button": открываем и с клавиатуры
+    el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(el.dataset.b); }
+    });
+  });
+  $('[data-close-sheet]', sheet).addEventListener('click', close);
+  sheet.addEventListener('cancel', e => { e.preventDefault(); close(); });
   // Клик по затемнению вокруг окна закрывает его
-  sheet.addEventListener('click', e => { if (e.target === sheet) sheet.close(); });
+  sheet.addEventListener('click', e => { if (e.target === sheet) close(); });
 }
+
+/* ---------- Схема: подсветка зданий ----------
+   Наведение на здание или на кнопку под схемой подсвечивает контур,
+   остальная картинка мягко приглушается, над зданием появляется подпись */
+$$('[data-scheme]').forEach(map => {
+  const section = map.closest('section') || document;
+  const setHot = id => {
+    map.classList.toggle('has-hot', !!id);
+    $$('.bld', map).forEach(g => g.classList.toggle('is-hot', g.dataset.b === id));
+    $$('.bld-tip', map).forEach(t => t.classList.toggle('on', t.dataset.tip === id));
+    $$('.scheme-list [data-b]', section).forEach(b => b.classList.toggle('is-hot', b.dataset.b === id));
+  };
+  $$('[data-b]', section).forEach(el => {
+    el.addEventListener('pointerenter', e => { if (e.pointerType !== 'touch') setHot(el.dataset.b); });
+    el.addEventListener('pointerleave', () => setHot(null));
+    el.addEventListener('focus', () => setHot(el.dataset.b));
+    el.addEventListener('blur', () => setHot(null));
+  });
+});
 
 /* ---------- Фото-тур «Как нас найти» (перенесён с официального сайта) ---------- */
 $$('[data-tour]').forEach(root => {

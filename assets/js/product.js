@@ -26,7 +26,7 @@
             <li><svg class="i"><use href="#i-pin"/></svg>Корпус 1 · ряд 1 · места 31–32</li>
             <li><svg class="i"><use href="#i-clock"/></svg>Ежедневно 9:00–17:00</li>
           </ul>
-          <a class="btn btn-primary pm-wa" target="_blank" rel="noopener"><svg class="i i-fill"><use href="#i-wa"/></svg>Хочу примерить</a>
+          <a class="btn btn-primary pm-wa" href="${MAX_URL}" target="_blank" rel="noopener">${MAX_IC}Хочу примерить</a>
           <p class="pm-note">Напишите — отложим вещь до вашего прихода.</p>
         </div>
       </div>
@@ -104,7 +104,7 @@
     img.src = imgBg.src = p.src || `assets/img/store/${p.img}.jpg`;
     if (img.complete) fit();
     img.alt = p.name;
-    if (!photoOnly) root.querySelector('.pm-wa').href = waLink(`Здравствуйте! Хочу примерить: ${p.name}. Отложите, пожалуйста.`);
+    if (!photoOnly) Object.assign(root.querySelector('.pm-wa'), { href: MAX_URL }).dataset.max = tryOnText(p.name);
     scroller.scrollTop = 0;
 
     lastFocus = document.activeElement;
