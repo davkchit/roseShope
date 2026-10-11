@@ -1183,3 +1183,30 @@ body > main, body > .mh-page { animation: none; }
 @media (prefers-reduced-motion: reduce) {
   .bld polygon, .bld-tip, .scheme-map > img { transition: none; }
 }
+
+/* Карусель категорий на главной: под название ровно 2 строки, короткие названия
+   по центру этого места — «Смотреть» везде на одной линии и на одном расстоянии */
+.mh-cats .mh-cat b {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 2.2em; margin-top: 22px; line-height: 1.1;
+}
+.mh-cats .mh-cat small { margin-top: 10px; padding-top: 0; }
+
+/* Safari на iPhone: при aspect-ratio + max-height блок фото в окне товара сужался
+   (справа белая полоса). Ширину задаём явно — фото всегда на всю ширину окна. */
+@media (max-width: 760px) {
+  .pm-img, .pm-photo-only .pm-img { width: 100%; max-width: none; }
+}
+
+/* Логотип на первом экране: белое свечение через filter: drop-shadow Safari обрезает
+   по краям картинки — был виден светлый прямоугольник. Заменяем мягким пятном света
+   за логотипом без жёстких границ. */
+.mh-hero-logo { filter: none; }
+.mh-hero-content { isolation: isolate; }
+.mh-hero-content::before {
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 42%;
+  width: min(900px, 120vw); height: 320px; transform: translate(-50%, -50%);
+  background: radial-gradient(closest-side, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0));
+  pointer-events: none;
+}
+.pm-img .pm-img-bg { max-width: none; }
