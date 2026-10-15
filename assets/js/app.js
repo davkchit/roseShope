@@ -10,9 +10,9 @@ const HOURS = { open: 9, close: 17 };
 
 // Товары магазина: категория, название, описание, фото из assets/img/store/
 const PRODUCTS = [
-  { cat: 'hudi',   name: 'Спортивный костюм',   desc: 'Худи на молнии и брюки',      img: 'cat-hudi' },
+  { cat: 'hudi',   name: 'Спортивный костюм',   desc: 'Худи на молнии и брюки',      img: 'cat-hudi', pos: '50% 62%' },
   { cat: 'jeans',  name: 'Джинсы wide leg',     desc: 'Тёмно-серые, высокая посадка', img: 'jeans-wide-legs' },
-  { cat: 'pizhamy',name: 'Халат плюшевый',      desc: 'Тёмно-синий, бордовая отделка', img: 'robe-navy' },
+  { cat: 'pizhamy',name: 'Халат плюшевый',      desc: 'Тёмно-синий, бордовая отделка', img: 'robe-navy', pos: '40% 24%' },
   { cat: 'hats',   name: 'Бейсболка',           desc: 'Хаки, регулируется',           img: 'cat-golovnye-ubory' },
   { cat: 'hudi',   name: 'Бордовый костюм',     desc: 'Худи на молнии и брюки',      img: 'hoodie-burgundy' },
   { cat: 'jeans',  name: 'Мом, синие',          desc: 'Резинка и шнурок',             img: 'jeans-street-blue' },
@@ -154,7 +154,7 @@ if (grid) {
     el.className = 'card';
     el.innerHTML = `
       <button class="card-open" type="button" aria-label="Подробнее: ${p.name}">
-        <span class="card-img"><img src="assets/img/store/${p.img}.jpg" alt="${p.name} — магазин одежды на рынке «Южный»" loading="lazy" width="600" height="800"></span>
+        <span class="card-img"><img src="assets/img/store/${p.img}.jpg"${p.pos ? ` style="object-position:${p.pos}"` : ""} alt="${p.name} — магазин одежды на рынке «Южный»" loading="lazy" width="600" height="800"></span>
         <h3>${p.name}</h3>
       </button>
       <a class="btn" href="${MAX_URL}" target="_blank" rel="noopener" data-max="${tryOnText(p.name)}">
