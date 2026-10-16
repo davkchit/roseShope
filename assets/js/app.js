@@ -6,7 +6,7 @@
 // Где взять: MAX → Профиль → QR-код → «Скопировать ссылку». Вид: https://max.ru/u/xxxxxxxx
 const MAX_URL = 'https://max.ru/';
 // Часы работы рынка (Набережные Челны, UTC+3)
-const HOURS = { open: 9, close: 17 };
+const HOURS = { open: 8, close: 18 };
 
 // Товары магазина: категория, название, описание, фото из assets/img/store/
 const PRODUCTS = [

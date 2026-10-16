@@ -24,7 +24,7 @@
           <ul class="pm-facts">
             <li><svg class="i"><use href="#i-hanger"/></svg>Можно примерить на месте</li>
             <li><svg class="i"><use href="#i-pin"/></svg>Корпус 1 · ряд 1 · места 31–32</li>
-            <li><svg class="i"><use href="#i-clock"/></svg>Ежедневно 9:00–17:00</li>
+            <li><svg class="i"><use href="#i-clock"/></svg>Ежедневно 8:00–18:00</li>
           </ul>
           <a class="btn btn-primary pm-wa" href="${MAX_URL}" target="_blank" rel="noopener">${MAX_IC}Хочу примерить</a>
           <p class="pm-note">Напишите — отложим вещь до вашего прихода.</p>
